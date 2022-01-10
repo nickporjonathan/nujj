@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link>
-    <link>
-    <title>Project Fetch</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <title>Find Meal For Your Ingredients</title>
+  </head>
 
-
-<body>
-  <!-- Header -->
-    <header>
-        <h1>
-          Project Fetch
-        </h1>
-    </header>
-  <!-- Header end-->
-
-  <!-- Random Choice -->
-<div>
-  <h2>Randomly Generate Choice</h2>
-    <p>Click button below to get a randomly generated selection from database </p>
-      <label>Generate:</label>
-        <button>Click</button>
-</div>
-
-  <!-- Location of Stores Nearby -->
-<div>
-  <h2>Nearby Store Locations</h2>
-    <p>Select Your City</p>
-      <label>City:</label>
-        <input>
-          <button>Submit</button>
-</div>
-      
- <!-- Footer -->
- <footer>
-    <h3> Made by Project Fetch.</h3>
-    <div>
-      &copy; 2022 Project Fetch, Inc.
+  <body>
+    <div class="container">
+      <div class="meal-wrap">
+        <div class="search-meal">
+          <h2 class="title">Search Using An Ingredient</h2>
+          <div class="meal-search-field">
+            <input
+              type="text"
+              class="search-control"
+              placeholder="Enter ingredient"
+              id="search-input"
+            />
+            <button type="submit" class="search-button btn" id="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="meal-outcome">
+          <h2 class="title">List of Meals:</h2>
+          <div id="meal"></div>
+        </div>
+        <div class="meal-specifics">
+          <!-- Close recipe button -->
+          <button
+            type="button"
+            class="btn recipe-close-btn"
+            id="recipe-close-btn"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+          <!-- meal content -->
+          <div class="meal-specifics-content"></div>
+        </div>
+      </div>
     </div>
-  </footer>
-  <!-- Footer end -->
 
-  <script>src="./assets/js/homepage.js"</script>
-  
-</body>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
