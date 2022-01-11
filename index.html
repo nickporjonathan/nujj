@@ -9,41 +9,48 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <title>Find Meal For Your Ingredients</title>
+    <title>Foo(d)</title>
   </head>
 
   <body>
-    <div class="container">
-      <div class="meal-wrap">
-        <div class="search-meal">
+  
+    <div class = background>
+    <div class = "container">
+      <div class = "meal-wrapper">
+        <div class = "meal-search">
           <h2 class="title">Search Using An Ingredient</h2>
-          <div class="meal-search-field">
-            <input
-              type="text"
-              class="search-control"
-              placeholder="Enter ingredient"
-              id="search-input"
-            />
-            <button type="submit" class="search-button btn" id="search-btn">
-              <i class="fas fa-search"></i>
+          
+          
+          <div class = "meal-search-box">
+            <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
+            <button type = "submit" class = "search-btn btn" id = "search-btn">
+              <i class = "fas fa-search"></i>
             </button>
           </div>
         </div>
-        <div class="meal-outcome">
-          <h2 class="title">List of Meals:</h2>
-          <div id="meal"></div>
+  
+        <div class = "meal-result">
+          <h2 class = "title">Your Search Results:</h2>
+          <div id= "meal">
+
+          </div>
         </div>
-        <div class="meal-specifics">
+      </div>
+  
+
+        <div class = "meal-details">
           <!-- Close recipe button -->
-          <button
-            type="button"
-            class="btn recipe-close-btn"
-            id="recipe-close-btn"
-          >
-            <i class="fas fa-times"></i>
+          
+          <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn">
+            <i class = "fas fa-times"></i>
           </button>
+
+
+
+
           <!-- meal content -->
-          <div class="meal-specifics-content"></div>
+          <div class = "meal-details-content">
+
         </div>
       </div>
     </div>
