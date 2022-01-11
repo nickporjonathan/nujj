@@ -11,54 +11,80 @@ recipeCloseBtn.addEventListener('click', () => {
 });
 
 
-// get meal list that matches with the ingredients
-function getMealList(){
-    let searchInputTxt = document.getElementById('search-input').value.trim();
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        let html = "";
-        if(data.meals){
-
-            //Add for loop
-            data.meals.forEach(meal => { 
-                html += `
-                    <div class = "meal-item" data-id = "${meal.idMeal}">
-                        <div class = "meal-img">
-                            <img src = "${meal.strMealThumb}" alt = "food">
-                        </div>
-                        <div class = "meal-name">
-                            <h3>${meal.strMeal}</h3>
-                            <a href = "#" class = "recipe-btn">Get Recipe</a>
-                        </div>
-                    </div>
-                `;
-            });
-            mealList.classList.remove('notFound');
-        } else{
-            html = "Sorry, we didn't find any meal!";
-            mealList.classList.add('notFound');
-        }
-
-        mealList.innerHTML = html;
-    });
-}
-
+// get meal list that matches with the search ingredient
+function getMealList() {
+    var inputTxt = document.getElementById('search-input').value.trim();
+    fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + inputTxt)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    if (data.meals) {
+                        mealList.innerHTML="";
+                        var mealsArray = data.meals;
+                        for (var i = 0; i < mealsArray.length; i++) {
+                            var receipeOption = document.createElement("div");
+                            receipeOption.className = "meal-item";
+                            receipeOption.setAttribute("id", mealsArray[i].idMeal);
+                            //get image
+                            var receipeImgContainer = document.createElement("div");
+                            receipeImgContainer.className = "meal-img";
+                            var receipeImg = document.createElement("img");
+                            receipeImg.setAttribute("src", mealsArray[i].strMealThumb);
+                            receipeImg.setAttribute("alt", mealsArray[i].strMeal);
+                            //get receipe
+                            var receipeName = document.createElement("div");
+                            receipeName.className = "meal-name";
+                            var receipeTitle = document.createElement("h3");
+                            receipeTitle.textContent = mealsArray[i].strMeal;
+                            var receipeBtn = document.createElement("a");
+                            receipeBtn.className = "recipe-btn";
+                            receipeBtn.innerHTML = "Get Recipe";
+                            receipeBtn.setAttribute("href", "#");
+                            //append Elements
+                            receipeName.appendChild(receipeTitle);
+                            receipeName.appendChild(receipeBtn);
+                            receipeImgContainer.appendChild(receipeImg);
+                            receipeOption.appendChild(receipeImgContainer);
+                            receipeOption.appendChild(receipeName);
+                            mealList.appendChild(receipeOption);
+                        };
+                    }
+                    else {
+                        mealList.innerHTML = "Sorry we didn't find any receipes. Try a different ingredient!";
+                        mealList.classList.add("notFound");
+                    }
+                });
+            }
+            else {
+                mealList.innerHTML = "Sorry we were unable to connect!";
+                mealList.classList.add("notFound");
+            }
+        })
+        .catch(function(error){
+            mealList.innerHTML = "Sorry we were unable to connect!";
+            mealList.classList.add("notFound");
+        })
+};
 
 // get recipe of the meal
-function getMealRecipe(e){
+function getMealRecipe(e) {
     e.preventDefault();
-    if(e.target.classList.contains('recipe-btn')){
-        let mealItem = e.target.parentElement.parentElement;
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
-        .then(response => response.json())
-        .then(data => mealRecipeModal(data.meals));
+    if (e.target.classList.contains('recipe-btn')) {
+        var mealItem = e.target.parentElement.parentElement
+        var mealNumber = mealItem.getAttribute("id");
+        fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i="+ mealNumber)
+            .then(function (response){
+                if (response.ok){
+                    response.json().then(function(data){
+                        mealRecipeModal(data.meals);
+                    })
+                }
+            })
     }
-}
+};
 
 // create a modal
-function mealRecipeModal(meal){
+function mealRecipeModal(meal) {
     console.log(meal);
     meal = meal[0];
     let html = `
