@@ -1,3 +1,5 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -75,8 +77,8 @@ body {
   height: 60px;
   font-size: 2rem;
   background: var(--russet);
-  color: aliceblue;
-  border: blue;
+  color: rgb(8, 8, 8);
+  border: rgb(10, 10, 10);
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   transition: all 0.5s linear;
@@ -84,4 +86,72 @@ body {
   -webkit-transition: all 0.5s linear;
   -ms-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
+}
+.recipe-btn:hover {
+  background: var(--russet-dark);
+}
+.meal-outcome {
+  margin-top: 5rem;
+}
+#meal {
+  margin: 2.5rem 0;
+}
+/* meal-item -- meal-img -- meal-name */
+.recipe-btn {
+  color: blue;
+  background: var(--russet);
+  font-weight: 900;
+  font-size: 1rem;
+  padding: 0.80rem 0;
+  display: flex;
+  width: 180px;
+  margin: 0.90rem auto;
+  border-radius: 1.9rem
+  -webkit-border-radious: 1.9rem;
+  -moz-border-radious: 1.9rem;
+  -ms-border-radious: 1.9rem;
+  -o-border-radious: 1.9rem;
+  transition: all 0.5s linear;
+  -webkit-transition: all 1.5s linear;
+  -moz-transition: all 1.5s linear;
+  -ms-transition: all 1.5s linear;
+  -o-transition: all 1.5s linear;
+}
+.recipe.btn:hover {
+  background: var(--russet-dark);
+}
+
+/* meal specifics */
+.meal-specifics {
+  position: relative;
+  top: 45%;
+  left: 45%;
+  transform: translate(-45%, -45%);
+  -webkit-transform: translate(-45%, -45%);
+  -moz-transform: translate(-45%, -45%);
+  -ms-transform: translate(-45%, -45%);
+  -o-transform: translate(-45%, -45%);
+  color: darkorange;
+  background: var(--russet);
+  border-radius: 1.1rem;
+  -webkit-border-radius: 1.1rem;
+  -moz-border-radius: 1.1rem;
+  -ms-border-radius: 1.1rem;
+  -o-border-radius: 1.1rem;
+  width: 80%;
+  height: 80%;
+  overflow-y: scroll;
+  display: none;
+  padding: 2rem 0;
+}
+.meal-specifics::-webkit-scrollbar {
+  width: 8px;
+}
+.meal-specifics::-webkit-scrollbar-thumb {
+  background: yellow;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
