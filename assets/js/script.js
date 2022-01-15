@@ -18,6 +18,12 @@ var ingredientsFinder = ["strIngredient1","strIngredient2","strIngredient3","str
 var quantityFinder = ["strMeasure1","strMeasure2","strMeasure3","strMeasure4","strMeasure5","strMeasure6","strMeasure7","strMeasure8","strMeasure9","strMeasure10","strMeasure11","strMeasure12","strMeasure13","strMeasure14","strMeasure15","strMeasure16","strMeasure17","strMeasure18","strMeasure19","strMeasure20",];
 var ingredients = [];
 var quantity = [];
+var nutritionalInfo = {
+    calories:0,
+    totalFat:0,
+    cholesterol: 0,
+    sodium: 0
+};
 
 function getDetails (event){
     event.preventDefault();
@@ -44,6 +50,7 @@ function getDetails (event){
                     }
                     console.log(ingredients);
                     console.log(quantity);
+                    getNutrients (ingredients, quantity);
                     })
                 }
             });
@@ -141,18 +148,21 @@ var getIngredients = function(event){
     })
 } 
 // get nutrients
-var getInfo = function(){
-    var apiUrl = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr=1 tsp minced garlic"
-    fetch(apiUrl).then(function(response){
+var getNutrients = function(ingredientsArr, quantityArr){
+    for (var i=0; i<ingredientsArr.length; i++){
+        var quantity= quantityArr[i];
+        var ingredient= ingredientsArr[i];
+        var apiUrl = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr="+quantity+" " +ingredient;
+        console.log(apiUrl);
+        fetch(apiUrl).then(function(response){
         if(response.ok){
             response.json().then(function(data){
                 console.log(data);
-            })
+            });
         }
     })
 }
-getInfo();
-
+};
 // create a modal
 function mealRecipeModal(meal) {
     console.log(meal);
