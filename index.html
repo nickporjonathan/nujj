@@ -13,24 +13,27 @@
   </head>
 
   <body>
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="./assets/1500x500.jpeg" alt="Gordon" />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="./assets/Jp2_LEBL_400x400.jpeg" alt="Ramsay" />
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">Gordon Ramsay</p>
-            <p class="subtitle is-6">@GordonRamsay</p>
+  
+    <div class = background>
+    <div class = "container">
+      <div class = "meal-wrapper">
+        <div class ="headertext border">Food(d)</div>
+        <div class = "headersub">Don't know what to make for dinner?</div>
+        <div class = "meal-search">
+          <h2 class="title">Search Using An Ingredient</h2>
+          
+          
+          <div class = "meal-search-box">
+            <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
+            <button type = "submit" class = "search-btn btn" id = "search-btn">
+              <i class = "fas fa-search"></i>
+            </button>
           </div>
         </div>
+
+        <div class="meal-result">
+          <h2 class="title">Your Search Results:</h2>
+          <div id="meal">
 
         <div class="content">
           I am a chef who happens to appear on the telly, that's it.
@@ -38,46 +41,28 @@
           <time datetime="2016-1-1">03:33 AM - 12 Jan 2022</time>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="meal-wrap">
-        <div class="search-meal">
-          <h2 class="title">Search Using An Ingredient</h2>
+      <div class="all-modals">
+        <div class="meal-details">
+          <!-- Close recipe button -->
 
-          <div class="meal-search-box">
-            <input
-              type="text"
-              class="search-control"
-              placeholder="Enter an ingredient"
-              id="search-input"
-            />
-            <button type="submit" class="search-btn btn" id="search-btn">
-              <i class="fas fa-search"></i>
+          <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+
+          <!-- meal content -->
+          <div class="meal-details-content">
+            <button type="button" class="btn nutrient-search" id="more-info">
+              More Info
             </button>
           </div>
         </div>
-
-        <div class="meal-result">
-          <h2 class="title">Your Search Results:</h2>
-          <div id="meal"></div>
+        <!-- Nutrient Modal-->
+        <div class="meal-nutrients">
+          <div class="meal-nutrients-content"></div>
         </div>
-      </div>
-
-      <div class="meal-details">
-        <!-- Close recipe button -->
-
-        <button
-          type="button"
-          class="btn recipe-close-btn"
-          id="recipe-close-btn"
-        >
-          <i class="fas fa-times"></i>
-        </button>
-
-        <!-- meal content -->
-        <div class="meal-details-content"></div>
       </div>
     </div>
     <script src="./assets/js/script.js"></script>
-  </body>
+</body>
+
 </html>
