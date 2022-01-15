@@ -4,7 +4,8 @@ var mealList = document.getElementById("meal");
 var mealDetailsContent = document.querySelector(".meal-details-content");
 var mealDetails = document.querySelector(".meal-details");
 var recipeCloseBtn = document.getElementById("recipe-close-btn");
-var test = document.querySelector(".container");
+var mealNutrientsContent = document.querySelector(".meal-nutrients-content");
+var modalEl = document.querySelector(".all-modals");
 
 // event listeners
 searchBtn.addEventListener("click", getMealList);
@@ -14,93 +15,12 @@ recipeCloseBtn.addEventListener("click", () => {
 });
 mealDetails.addEventListener("click", getDetails);
 
+//global arrays & objects
 var ingredientsFinder = ["strIngredient1", "strIngredient2", "strIngredient3", "strIngredient4", "strIngredient5", "strIngredient6", "strIngredient7", "strIngredient8", "strIngredient9", "strIngredient10", "strIngredient11", "strIngredient12", "strIngredient13", "strIngredient14", "strIngredient15", "strIngredient16", "strIngredient17", "strIngredient18", "strIngredient19", "strIngredient20",];
 var quantityFinder = ["strMeasure1", "strMeasure2", "strMeasure3", "strMeasure4", "strMeasure5", "strMeasure6", "strMeasure7", "strMeasure8", "strMeasure9", "strMeasure10", "strMeasure11", "strMeasure12", "strMeasure13", "strMeasure14", "strMeasure15", "strMeasure16", "strMeasure17", "strMeasure18", "strMeasure19", "strMeasure20",];
 var ingredients = [];
 var quantity = [];
-var nutritionalInfo = {
-    calories: 0,
-    totalFat: 0,
-    cholesterol: 0,
-    sodium: 0,
-    carbs: 0,
-    protein: 0,
-    vitaminA: 0,
-    vitaminC: 0,
-    vitaminD: 0,
-    vitaminK: 0,
-    calcium: 0,
-    iron: 0,
-    potassium: 0,
-    magnesium: 0
-};
-
-function getDetails(event) {
-    event.preventDefault();
-    if (event.target.classList.contains("more-info")) {
-        var mealNumber = event.target.getAttribute("id");
-        fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealNumber)
-            .then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (data) {
-                        var meal = data.meals[0]
-                        for (var i = 0; i < ingredientsFinder.length; i++) {
-                            var term = ingredientsFinder[i];
-                            var ingredient = meal[term];
-                            if (ingredient) {
-                                ingredients.push(ingredient);
-                            }
-                        }
-                        for (var i = 0; i < quantityFinder.length; i++) {
-                            var number = quantityFinder[i];
-                            var quantityDetail = meal[number];
-                            if (quantityDetail) {
-                                var checkFraction = quantityDetail.includes("/");
-                                if (checkFraction){
-                                    var extractFraction = quantityDetail.substring(0,4);
-                                    console.log(extractFraction);
-                                    var converted = eval(extractFraction);
-                                    console.log(converted);
-                                    quantityDetail =quantityDetail.replace(extractFraction, converted+" ")
-                                }
-                                quantityDetail= convertUnits(quantityDetail);
-                                quantity.push(quantityDetail);
-                            }
-                        }
-                        console.log(ingredients);
-                        console.log(quantity);
-                        getNutrients(ingredients, quantity);
-                    })
-                }
-            });
-    }
-};
-//convert units so that they are compatible with second api
-function convertUnits(quantity) {
-    if (quantity.includes("oz")){
-        var replace = quantity.replace("oz", "ounce");
-        return replace;
-    }
-    else if (quantity.includes("lb")){
-        var replace = quantity.replace("lb", "pound");
-        return replace;
-    }
-    else if (quantity.includes("pinch")){
-        var replace = quantity.replace("pinch", "1 pinch");
-        return replace;
-    }
-    else if (quantity.includes("tsp")){
-        var replace = quantity.replace("tsp", "teaspoon");
-        return replace;
-    }
-    else if (quantity.includes("tbs")){
-        var replace = quantity.replace("tbs", "tablespoon");
-        return replace;
-    }
-    else {
-        return quantity;
-    }
-}
+var nutritionalInfo = {calories: 0, totalFat: 0, cholesterol: 0, sodium: 0, carbs: 0, protein: 0, vitaminA: 0, vitaminC: 0, vitaminD: 0, vitaminK: 0, calcium: 0, iron: 0, potassium: 0, magnesium: 0};
 
 // get meal list that matches with the search ingredient
 function getMealList() {
@@ -157,100 +77,6 @@ function getMealList() {
             mealList.classList.add("notFound");
         })
 };
-
-// get recipe of the meal
-function getMealRecipe(event) {
-    event.preventDefault();
-    if (event.target.classList.contains('recipe-btn')) {
-        var mealItem = event.target.parentElement.parentElement
-        var mealNumber = mealItem.getAttribute("id");
-        fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealNumber)
-            .then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (data) {
-                        mealRecipeModal(data.meals);
-                    })
-                }
-                else {
-                    mealList.innerHTML = "Sorry! We are currently unable to display this receipe.";
-                    mealList.classList.add("notFound");
-                }
-            })
-    }
-};
-// get full list of ingredients
-var getIngredients = function (event) {
-    event.preventDefault();
-    var mealItem = event.target.parentElement.parentElement
-    var mealNumber = mealItem.getAttribute("id");
-    var apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealNumber;
-    fetch(apiUrl).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (data) {
-                console.log(data);
-            })
-        }
-    })
-}
-
-// get nutrients
-var getNutrients = async function (ingredientsArr, quantityArr) {
-    for (var i = 0; i < ingredientsArr.length; i++) {
-        var quantity = quantityArr[i];
-        var ingredient = ingredientsArr[i];
-        var url = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr=" + quantity + " " + ingredient;
-        var apiUrl = encodeURI(url);
-        await fetch(apiUrl).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    var fat = (data.totalDaily.FAT.quantity);
-                    nutritionalInfo.totalFat = nutritionalInfo.totalFat + fat;
-                    var calories = (data.calories);
-                    nutritionalInfo.calories = nutritionalInfo.calories + calories;
-                    var cholesterol = (data.totalDaily.CHOLE.quantity);
-                    nutritionalInfo.cholesterol = nutritionalInfo.cholesterol + cholesterol;
-                    var sodium = (data.totalDaily.NA.quantity);
-                    nutritionalInfo.sodium = nutritionalInfo.sodium + sodium;
-                    var carbs = (data.totalDaily.CHOCDF.quantity);
-                    nutritionalInfo.carbs = nutritionalInfo.carbs + carbs;
-                    var protein = (data.totalDaily.PROCNT.quantity);
-                    nutritionalInfo.protein = nutritionalInfo.protein + protein;
-                    var vA = (data.totalDaily.VITA_RAE.quantity);
-                    nutritionalInfo.vitaminA = nutritionalInfo.vitaminA + vA;
-                    var vC = (data.totalDaily.VITC.quantity);
-                    nutritionalInfo.vitaminC = nutritionalInfo.vitaminC + vC;
-                    var vD = (data.totalDaily.VITD.quantity);
-                    nutritionalInfo.vitaminD = nutritionalInfo.vitaminD + vD;
-                    var vK = (data.totalDaily.VITK1.quantity);
-                    nutritionalInfo.vitaminK = nutritionalInfo.vitaminK + vK;
-                    var calc = (data.totalDaily.CA.quantity);
-                    nutritionalInfo.calcium = nutritionalInfo.calcium + calc;
-                    var iron = (data.totalDaily.FE.quantity);
-                    nutritionalInfo.iron = nutritionalInfo.iron + iron;
-                    var potas = (data.totalDaily.K.quantity);
-                    nutritionalInfo.potassium = nutritionalInfo.potassium + potas;
-                    // return nutritionalInfo;
-                });
-            }
-        })
-    }
-    console.log(nutritionalInfo);
-};
-var nutritionalInfo = {
-    calories: 0,
-    totalFat: 0,
-    cholesterol: 0,
-    sodium: 0,
-    carbs: 0,
-    protein: 0,
-    vitaminA: 0,
-    vitaminC: 0,
-    vitaminD: 0,
-    vitaminK: 0,
-    calcium: 0,
-    iron: 0,
-    potassium: 0,
-};
 // create a modal
 function mealRecipeModal(meal) {
     console.log(meal);
@@ -275,26 +101,156 @@ function mealRecipeModal(meal) {
     mealDetailsContent.innerHTML = html;
     mealDetailsContent.parentElement.classList.add('showRecipe');
 };
+// get recipe of the meal
+function getMealRecipe(event) {
+    event.preventDefault();
+    if (event.target.classList.contains('recipe-btn')) {
+        var mealItem = event.target.parentElement.parentElement
+        var mealNumber = mealItem.getAttribute("id");
+        fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealNumber)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (data) {
+                        mealRecipeModal(data.meals);
+                    })
+                }
+                else {
+                    mealList.innerHTML = "Sorry! We are currently unable to display this receipe.";
+                    mealList.classList.add("notFound");
+                }
+            })
+    }
+};
+//Compile all ingredients from receipe
+function getDetails(event) {
+    event.preventDefault();
+    if (event.target.classList.contains("more-info")) {
+        var mealNumber = event.target.getAttribute("id");
+        fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealNumber)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (data) {
+                        var meal = data.meals[0]
+                        for (var i = 0; i < ingredientsFinder.length; i++) {
+                            var term = ingredientsFinder[i];
+                            var ingredient = meal[term];
+                            if (ingredient) {
+                                ingredients.push(ingredient);
+                            }
+                        }
+                        for (var i = 0; i < quantityFinder.length; i++) {
+                            var number = quantityFinder[i];
+                            var quantityDetail = meal[number];
+                            if (quantityDetail) {
+                                var checkFraction = quantityDetail.includes("/");
+                                if (checkFraction){
+                                    var extractFraction = quantityDetail.substring(0,4);
+                                    console.log(extractFraction);
+                                    var converted = eval(extractFraction);
+                                    console.log(converted);
+                                    quantityDetail =quantityDetail.replace(extractFraction, converted+" ")
+                                }
+                                quantityDetail= convertUnits(quantityDetail);
+                                quantity.push(quantityDetail);
+                            }
+                        }
+                        getNutrients(ingredients, quantity);
+                    })
+                }
+            });
+    }
+};
+//convert ingredient units so that they are compatible with second api
+function convertUnits(quantity) {
+    if (quantity.includes("oz")){
+        var replace = quantity.replace("oz", "ounce");
+        return replace;
+    }
+    else if (quantity.includes("lb")){
+        var replace = quantity.replace("lb", "pound");
+        return replace;
+    }
+    else if (quantity.includes("pinch")){
+        var replace = quantity.replace("pinch", "1 pinch");
+        return replace;
+    }
+    else if (quantity.includes("tsp")){
+        var replace = quantity.replace("tsp", "teaspoon");
+        return replace;
+    }
+    else if (quantity.includes("tbs")){
+        var replace = quantity.replace("tbs", "tablespoon");
+        return replace;
+    }
+    else {
+        return quantity;
+    }
+}
 
-
-
-// var searchInstant = function() {
-//     var input=searchInput.val
-//     var apiUrl ="https://trackapi.nutritionix.com/v2/search/instant?query=" + input;
-//     fetch(apiUrl,{
-//         method: "GET",
-//         headers: {"Ocp-Apim-Subscription-Key": key}
-//     }).then(function(response){
-//         if(response.ok){
-//          response.json().then(function(data){
-//          console.log(data);
-//          });
-//          }
-//         else{
-//             alert("Error: GitHub User Not Found");
-//         }
-//     })
-//     .catch(function(error){
-//         alert("Unable to connect to GitHub");
-//     })
-//  };
+// get nutrients
+var getNutrients = async function (ingredientsArr, quantityArr) {
+    for (var i = 0; i < ingredientsArr.length; i++) {
+        var quantity = quantityArr[i];
+        var ingredient = ingredientsArr[i];
+        var url = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr=" + quantity + " " + ingredient;
+        var apiUrl = encodeURI(url);
+        await fetch(apiUrl).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    var fat = (data.totalDaily.FAT.quantity);
+                    nutritionalInfo.totalFat = Math.floor(nutritionalInfo.totalFat + fat);
+                    var calories = (data.calories);
+                    nutritionalInfo.calories = Math.floor(nutritionalInfo.calories + calories);
+                    var cholesterol = (data.totalDaily.CHOLE.quantity);
+                    nutritionalInfo.cholesterol = Math.floor(nutritionalInfo.cholesterol + cholesterol);
+                    var sodium = (data.totalDaily.NA.quantity);
+                    nutritionalInfo.sodium = Math.floor(nutritionalInfo.sodium + sodium);
+                    var carbs = (data.totalDaily.CHOCDF.quantity);
+                    nutritionalInfo.carbs = Math.floor(nutritionalInfo.carbs + carbs);
+                    var protein = (data.totalDaily.PROCNT.quantity);
+                    nutritionalInfo.protein = Math.floor(nutritionalInfo.protein + protein);
+                    var vA = (data.totalDaily.VITA_RAE.quantity);
+                    nutritionalInfo.vitaminA = Math.floor(nutritionalInfo.vitaminA + vA);
+                    var vC = (data.totalDaily.VITC.quantity);
+                    nutritionalInfo.vitaminC = Math.floor(nutritionalInfo.vitaminC + vC);
+                    var vD = (data.totalDaily.VITD.quantity);
+                    nutritionalInfo.vitaminD = Math.floor(nutritionalInfo.vitaminD + vD);
+                    var vK = (data.totalDaily.VITK1.quantity);
+                    nutritionalInfo.vitaminK = Math.floor(nutritionalInfo.vitaminK + vK);
+                    var calc = (data.totalDaily.CA.quantity);
+                    nutritionalInfo.calcium = Math.floor(nutritionalInfo.calcium + calc);
+                    var iron = (data.totalDaily.FE.quantity);
+                    nutritionalInfo.iron = Math.floor(nutritionalInfo.iron + iron);
+                    var potas = (data.totalDaily.K.quantity);
+                    nutritionalInfo.potassium = Math.floor(nutritionalInfo.potassium + potas);
+                });
+            }
+        })
+    }
+    mealNutrientModal(nutritionalInfo);
+};
+// create a modal for nutrients
+function mealNutrientModal(nutrientsObj) {
+    console.log(nutrientsObj);
+    let html = `
+    <div class = "nutrient-list">
+        <h2 class = "recipe-title">Nutrients</h2>
+        <p><span>Calories:</span> ${nutrientsObj.calories} </p>
+        <p><span>Total Fat:</span> ${nutrientsObj.totalFat} %</p>
+        <p><span>Cholesteral:</span> ${nutrientsObj.cholesterol} %</p>
+        <p><span>Sodium:</span> ${nutrientsObj.sodium} %</p>
+        <p><span>Carbohydrates:</span> ${nutrientsObj.carbs} %</p>
+        <p><span>Protein:</span> ${nutrientsObj.protein} %</p>
+        <p><span>Vitamin A:</span> ${nutrientsObj.vitaminA} %</p>
+        <p><span>Vitamin C:</span> ${nutrientsObj.vitaminC} %</p>
+        <p><span>Vitamin D:</span> ${nutrientsObj.vitaminD} %</p>
+        <p><span>Vitamin K:</span> ${nutrientsObj.vitaminK} %</p>
+        <p><span>Calcium:</span> ${nutrientsObj.calcium} %</p>
+        <p><span>Iron:</span> ${nutrientsObj.iron} %</p>
+        <p><span>Potassium:</span> ${nutrientsObj.potassium} %</p>
+    </div>
+    `;
+    mealNutrientsContent.innerHTML = html;
+    modalEl.classList.add("modalFlex")
+    mealNutrientsContent.parentElement.classList.add("showNutrients");
+}

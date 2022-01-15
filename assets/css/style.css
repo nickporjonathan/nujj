@@ -185,7 +185,7 @@ body{
 
 /* js related */
 .showRecipe{
-    display: block;
+    display: flex;
 }
 
 .meal-details-content{
@@ -277,7 +277,7 @@ body{
     justify-content: space-between;
 }
 .more-info{
-    background-color: #4a07b5;
+    background-color:var(--tenne-tawny-dark);
     color: white;
     padding: 1rem;
     border: none;
@@ -288,7 +288,48 @@ body{
 .more-info:hover{
     opacity: 0.8;
 }
-
+.meal-nutrients{
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    color: #fff;
+    background: var(--tenne-tawny-dark);
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    width: 40%;
+    height: 60%;
+    overflow-y: scroll;
+    display: none;
+    padding: 2rem 0;
+}
+.meal-nutrients-content{
+    margin: 2rem;
+    background-color: var(--tenne-tawny-dark);
+}
+.nutrient-list{
+    color: #fff;
+}
+.nutrient-list p{
+    margin: 1rem;
+}
+.nutrient-list span{
+    font-style: bold;
+}
+.modalFlex{
+    display:flex;
+    justify-content: space-around;
+}
+.showNutrients{
+    display:flex;
+}
 
 /*  */
 .notFound{

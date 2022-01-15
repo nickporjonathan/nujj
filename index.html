@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <title>Foo(d)</title>
-  </head>
 
-  <body>
-  
-    <div class = background>
-    <div class = "container">
-      <div class = "meal-wrapper">
-        <div class = "meal-search">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <title>Foo(d)</title>
+</head>
+
+<body>
+
+  <div class=background>
+    <div class="container">
+      <div class="meal-wrapper">
+        <div class="meal-search">
           <h2 class="title">Search Using An Ingredient</h2>
-          <div class = "meal-search-box">
-            <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
-            <button type = "submit" class = "search-btn btn" id = "search-btn">
-              <i class = "fas fa-search"></i>
+          <div class="meal-search-box">
+            <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input">
+            <button type="submit" class="search-btn btn" id="search-btn">
+              <i class="fas fa-search"></i>
             </button>
           </div>
         </div>
-  
-        <div class = "meal-result">
-          <h2 class = "title">Your Search Results:</h2>
-          <div id= "meal">
+
+        <div class="meal-result">
+          <h2 class="title">Your Search Results:</h2>
+          <div id="meal">
 
           </div>
         </div>
       </div>
-  
-
-        <div class = "meal-details">
+      <div class="all-modals">
+        <div class="meal-details">
           <!-- Close recipe button -->
-          
-          <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn">
-            <i class = "fas fa-times"></i>
+
+          <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
+            <i class="fas fa-times"></i>
           </button>
 
-
-
-
           <!-- meal content -->
-          <div class = "meal-details-content">
-            <button type = "button" class = "btn nutrient-search" id = "more-info">
+          <div class="meal-details-content">
+            <button type="button" class="btn nutrient-search" id="more-info">
               More Info
             </button>
-
+          </div>
+        </div>
+        <!-- Nutrient Modal-->
+        <div class="meal-nutrients">
+          <div class="meal-nutrients-content"></div>
         </div>
       </div>
     </div>
 
     <script src="./assets/js/script.js"></script>
-  </body>
+</body>
+
 </html>
