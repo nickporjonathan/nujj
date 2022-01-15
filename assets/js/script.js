@@ -4,7 +4,7 @@ var mealList = document.getElementById("meal");
 var mealDetailsContent = document.querySelector(".meal-details-content");
 var mealDetails = document.querySelector(".meal-details");
 var recipeCloseBtn = document.getElementById("recipe-close-btn");
-
+var test = document.querySelector(".container");
 
 // event listeners
 searchBtn.addEventListener("click", getMealList);
@@ -12,9 +12,10 @@ mealList.addEventListener("click", getMealRecipe);
 recipeCloseBtn.addEventListener("click", () => {
     mealDetailsContent.parentElement.classList.remove("showRecipe");
 });
-mealDetailsContent.addEventListener("click", getDetails);
+mealDetails.addEventListener("click", getDetails);
 
-var getDetails = function (event){
+
+var getDetails = function (){
     console.log("triggered");
     // event.preventDefault();
     // console.log(event.target);
@@ -22,7 +23,6 @@ var getDetails = function (event){
     //     console.log("more info clicked");
 // }
 };
-
 
 // get meal list that matches with the search ingredient
 function getMealList() {
@@ -101,8 +101,11 @@ function getMealRecipe(event) {
     }
 };
 // get full list of ingredients
-var getIngredients = function(mealId){
-    var apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId;
+var getIngredients = function(event){
+    event.preventDefault();
+    var mealItem = event.target.parentElement.parentElement
+    var mealNumber = mealItem.getAttribute("id");
+    var apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealNumber;
     fetch(apiUrl).then(function(response){
         if(response.ok){
             response.json().then(function(data){
