@@ -103,6 +103,7 @@ body{
 .search-control::placeholder{
     color: var(--aquamarine);
 }
+
 .search-btn{
     width: 70px;
     height: 65px;
