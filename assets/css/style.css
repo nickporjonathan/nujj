@@ -267,8 +267,25 @@ body{
     -moz-transition: all 0.4s linear;
     -ms-transition: all 0.4s linear;
     -o-transition: all 0.4s linear;
+    display: flex;
 }
 .recipe-link a:hover{
+    opacity: 0.8;
+}
+.additionalButtons{
+    display: flex;
+    justify-content: space-between;
+}
+.more-info{
+    background-color: #4a07b5;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    display:flex;
+    justify-content: space-between;
+}
+.more-info:hover{
     opacity: 0.8;
 }
 
