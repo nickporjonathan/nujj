@@ -196,24 +196,60 @@ var getIngredients = function (event) {
 // get nutrients
 var getNutrients = async function (ingredientsArr, quantityArr) {
     for (var i = 0; i < ingredientsArr.length; i++) {
-        debugger;
         var quantity = quantityArr[i];
         var ingredient = ingredientsArr[i];
         var url = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr=" + quantity + " " + ingredient;
         var apiUrl = encodeURI(url);
-        console.log(apiUrl);
         await fetch(apiUrl).then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-                    console.log(data);
                     var fat = (data.totalDaily.FAT.quantity);
-                    console.log(ingredient);
-                    nutritionalInfo.totalFat = nutritionalInfo.totalFat + fat
-                    console.log(nutritionalInfo)
+                    nutritionalInfo.totalFat = nutritionalInfo.totalFat + fat;
+                    var calories = (data.calories);
+                    nutritionalInfo.calories = nutritionalInfo.calories + calories;
+                    var cholesterol = (data.totalDaily.CHOLE.quantity);
+                    nutritionalInfo.cholesterol = nutritionalInfo.cholesterol + cholesterol;
+                    var sodium = (data.totalDaily.NA.quantity);
+                    nutritionalInfo.sodium = nutritionalInfo.sodium + sodium;
+                    var carbs = (data.totalDaily.CHOCDF.quantity);
+                    nutritionalInfo.carbs = nutritionalInfo.carbs + carbs;
+                    var protein = (data.totalDaily.PROCNT.quantity);
+                    nutritionalInfo.protein = nutritionalInfo.protein + protein;
+                    var vA = (data.totalDaily.VITA_RAE.quantity);
+                    nutritionalInfo.vitaminA = nutritionalInfo.vitaminA + vA;
+                    var vC = (data.totalDaily.VITC.quantity);
+                    nutritionalInfo.vitaminC = nutritionalInfo.vitaminC + vC;
+                    var vD = (data.totalDaily.VITD.quantity);
+                    nutritionalInfo.vitaminD = nutritionalInfo.vitaminD + vD;
+                    var vK = (data.totalDaily.VITK1.quantity);
+                    nutritionalInfo.vitaminK = nutritionalInfo.vitaminK + vK;
+                    var calc = (data.totalDaily.CA.quantity);
+                    nutritionalInfo.calcium = nutritionalInfo.calcium + calc;
+                    var iron = (data.totalDaily.FE.quantity);
+                    nutritionalInfo.iron = nutritionalInfo.iron + iron;
+                    var potas = (data.totalDaily.K.quantity);
+                    nutritionalInfo.potassium = nutritionalInfo.potassium + potas;
+                    // return nutritionalInfo;
                 });
             }
         })
     }
+    console.log(nutritionalInfo);
+};
+var nutritionalInfo = {
+    calories: 0,
+    totalFat: 0,
+    cholesterol: 0,
+    sodium: 0,
+    carbs: 0,
+    protein: 0,
+    vitaminA: 0,
+    vitaminC: 0,
+    vitaminD: 0,
+    vitaminK: 0,
+    calcium: 0,
+    iron: 0,
+    potassium: 0,
 };
 // create a modal
 function mealRecipeModal(meal) {
@@ -262,16 +298,3 @@ function mealRecipeModal(meal) {
 //         alert("Unable to connect to GitHub");
 //     })
 //  };
-var test = async function () {
-        var url = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr=1%2F2%20lb%20beef";
-        var apiUrl = encodeURI(url);
-        console.log(apiUrl);
-        await fetch(apiUrl).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    console.log(data);
-                });
-            }
-        })
-    }
-test();
