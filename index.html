@@ -8,13 +8,19 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
   <script src="https://kit.fontawesome.com/119704578d.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
   <title>Foo(d)</title>
 </head>
-
 <body>
   <div class=background>
     <div class="container">
       <div class="meal-wrapper">
+        <lord-icon class="apple"
+    src="https://cdn.lordicon.com/stbcbpfl.json"
+    trigger="loop"
+    colors="primary:#121331,secondary:#08a88a"
+    style="width:100px;height:100px">
+</lord-icon>
         <div class="headertext border">Food(d)</div>
         <div class="headersub">Don't know what to make for dinner?</div>
         <div class="meal-search">
@@ -22,7 +28,7 @@
             <div class="meal-search-box">
               <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input" name="ingredient">
               <button type="submit" class="search-btn btn" id="search-btn">
-                <i class="fas fa-search searchicon"></i>
+                <i class="fas fa-search searchicon "></i>
               </button>
             </div>
             <div class="matches"id="match-list"></div>

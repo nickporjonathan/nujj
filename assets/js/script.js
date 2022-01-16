@@ -14,13 +14,21 @@ searchBtn.addEventListener("click", getMealList);
 matchList.addEventListener("click", submitInput);
 mealList.addEventListener("click", getMealRecipe);
 recipeCloseBtn.addEventListener("click", () => {
-  mealDetailsContent.parentElement.classList.remove("showRecipe");
+    mealDetailsContent.parentElement.classList.remove("showRecipe");
+
 });
 nutrientCloseBtn.addEventListener("click", () => {
     mealNutrientsContent.parentElement.classList.remove("showNutrients");
   });
 mealDetails.addEventListener("click", getDetails);
 searchInput.addEventListener("input", () => searchIngredients(searchInput.value));
+
+
+/*nutrientCloseBtn.addEventListener("click", () => {
+    console.log("click");
+    mealNutrientsContent.parentElement.classList.remove("showNutrients");
+});*/
+
 
 
 //global arrays & objects
@@ -310,6 +318,15 @@ var getNutrients = async function (ingredientsArr, quantityArr) {
   var infoButton = document.querySelector(".more-info");
     infoButton.classList.remove("is-loading");
 };
+
+/*nutrientCloseBtn.addEventListener("click", () => {
+    mealNutrientsContent.parentElement.classList.remove("showNutrients");
+});*/
+
+
+
+
+
 // create a modal for nutrients
 function mealNutrientModal(nutrientsObj) {
   console.log(nutrientsObj);
