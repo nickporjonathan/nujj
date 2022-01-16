@@ -342,8 +342,6 @@ body {
   justify-content: center;
   opacity: 0.9;
 }
-.nutrient-search::after {
-}
 .nutrient-close-btn {
   position: fixed;
   right: 2rem;

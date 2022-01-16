@@ -6,7 +6,7 @@ var mealDetails = document.querySelector(".meal-details");
 var recipeCloseBtn = document.getElementById("recipe-close-btn");
 var mealNutrientsContent = document.querySelector(".meal-nutrients-content");
 var modalEl = document.querySelector(".all-modals");
-
+var nutrientCloseBtn = document.getElementById("nutrient-close-btn")
 
 // event listeners
 searchBtn.addEventListener("click", getMealList);
@@ -14,6 +14,9 @@ mealList.addEventListener("click", getMealRecipe);
 recipeCloseBtn.addEventListener("click", () => {
   mealDetailsContent.parentElement.classList.remove("showRecipe");
 });
+nutrientCloseBtn.addEventListener("click", () => {
+    mealNutrientsContent.parentElement.classList.remove("showNutrients");
+  });
 mealDetails.addEventListener("click", getDetails);
 
 //global arrays & objects
@@ -151,7 +154,7 @@ function mealRecipeModal(meal) {
         <div class = additionalButtons>
         <div class = "recipe-link">
             <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
-            <button type = "submit" class = "more-info" id = "${meal.idMeal}">More Info</button>
+            <button type = "submit" class = "more-info button is-link" id = "${meal.idMeal}">More Info</button>
             
         </div>
         </div>
