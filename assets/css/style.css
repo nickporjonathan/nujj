@@ -299,7 +299,10 @@ body {
   background-color: var(--aquamarine-dark);
 }
 .nutrient-list {
-  color: #fff;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border-radius: .5rem;
 }
 .nutrient-list p {
   margin: 0.5rem;

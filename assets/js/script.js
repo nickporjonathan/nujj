@@ -80,8 +80,6 @@ function submitInput(event){
     var input=event.target.innerHTML;
     searchInput.value=input;
     getMealList();
-    matches =[];
-    matchList.innerHTML="";
 }
 
 // get meal list that matches with the search ingredient
@@ -137,6 +135,9 @@ function getMealList() {
       mealList.innerHTML = "Sorry we were unable to connect!";
       mealList.classList.add("notFound");
     });
+    matches =[];
+    matchList.innerHTML="";
+    searchInput.value="";
 }
 // create a modal
 function mealRecipeModal(meal) {
