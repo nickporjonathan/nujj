@@ -24,13 +24,6 @@ mealDetails.addEventListener("click", getDetails);
 searchInput.addEventListener("input", () => searchIngredients(searchInput.value));
 
 
-/*nutrientCloseBtn.addEventListener("click", () => {
-    console.log("click");
-    mealNutrientsContent.parentElement.classList.remove("showNutrients");
-});*/
-
-
-
 //global arrays & objects
 var ingredientsFinder = ["strIngredient1","strIngredient2","strIngredient3","strIngredient4","strIngredient5","strIngredient6","strIngredient7","strIngredient8","strIngredient9","strIngredient10","strIngredient11","strIngredient12","strIngredient13","strIngredient14","strIngredient15","strIngredient16","strIngredient17","strIngredient18","strIngredient19","strIngredient20",];
 var quantityFinder = ["strMeasure1","strMeasure2","strMeasure3","strMeasure4","strMeasure5","strMeasure6","strMeasure7","strMeasure8","strMeasure9","strMeasure10","strMeasure11","strMeasure12","strMeasure13","strMeasure14","strMeasure15","strMeasure16","strMeasure17","strMeasure18","strMeasure19","strMeasure20",];
@@ -163,7 +156,9 @@ function mealRecipeModal(meal) {
         </div>
         <div class = additionalButtons>
         <div class = "recipe-link">
-            <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
+            <div>
+                <a class ="link" href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
+            <div>
             <button type = "submit" class = "more-info button is-link" id = "${meal.idMeal}">More Info</button>
             
         </div>
@@ -236,6 +231,12 @@ function getDetails(event) {
         });
       }
     });
+  }
+  else if (event.target.classList.contains("link")){
+    var linkButton = document.querySelector(".link");
+    var url = linkButton.getAttribute("href");
+    console.log(url);
+    window.open(url,"_blank");
   }
 }
 //convert ingredient units so that they are compatible with second api
