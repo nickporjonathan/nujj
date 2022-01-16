@@ -6,9 +6,28 @@
 :root {
   --aquamarine: #3ee2bc;
   --aquamarine-dark: #286556;
-  /*--tenne-tawny: #08D687;
-    --tenne-tawny-dark: #4A07B5;*/
+  
 }
+
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
 body {
   font-weight: 300;
   font-size: 1.05rem;
@@ -298,6 +317,20 @@ body {
   margin: 2rem;
   background-color: var(--aquamarine-dark);
 }
+.nutrient-title{
+    font-weight: bolder;
+    font-size: larger;
+    border-bottom: black 3px solid;
+    letter-spacing: 1px;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.disclaimer{
+    color: red;
+    border-bottom: black 2px solid;
+    padding: 5px 0px;
+    margin: 3px;
+}
 .nutrient-list {
   color: black;
   background-color: white;
@@ -306,9 +339,15 @@ body {
 }
 .nutrient-list p {
   margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: black solid .75px;
+}
+.exception{
+    border-bottom: none !important;
 }
 .nutrient-list span {
-  font-style: bold;
+  font-weight: bold;
 }
 .modalFlex {
   display: flex;
@@ -331,6 +370,20 @@ body {
   align-items: center;
   justify-content: center;
   opacity: 0.9;
+}
+.right-justify{
+    font-size:smaller;
+    text-align: right;
+    display: block !important;
+}
+.calories{
+    font-size: 1.5rem;
+    border-bottom: black 2px solid !important; 
+    padding-bottom: 5px;
+    width:inherit;
+}
+.top-list{
+    border-bottom: black 5px solid;
 }
 .nutrient-close-btn {
   position: fixed;

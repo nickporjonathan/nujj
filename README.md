@@ -9,14 +9,18 @@ The purpose of this app is to allow users to search for receipes based on a spec
 *JSS
 *Bulma
 
+## Additional Tech
+*CSS Animate
+*LordIcon Library
+
 ## Website
 https://jnnh.github.io/nujj/
 
 ## Screenshot
 This search app should look like the following screenshots
-![image](https://user-images.githubusercontent.com/94391604/149665600-e097b693-41d8-42c0-b154-cf5b3175b853.png)
+![image](https://user-images.githubusercontent.com/94014154/149671132-5cfd12af-201f-44de-b6c0-dd1c3047dc80.png)
 
-![image](https://user-images.githubusercontent.com/94391604/149665633-75e6c2a1-31a8-4013-ab17-a4b757950da8.png)
+![image](https://user-images.githubusercontent.com/94014154/149671205-7533ea29-9803-4957-9025-346824cdc68f.png)
 
 ## APIs Accessed
 https://developer.edamam.com/edamam-nutrition-api
@@ -24,5 +28,5 @@ https://www.themealdb.com/api.php
 
 ## Contribution
 Jennifer Horvath -Group Leader: API research, Javascript
-Nathan Nitschke -API research support, CSS, wireframe
+Nathan Nitschke -API research support, CSS, wireframe, CSS animation
 Jonathan Nickpor -CSS, Bulma
