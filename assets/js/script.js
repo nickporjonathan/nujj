@@ -7,13 +7,24 @@ var recipeCloseBtn = document.getElementById("recipe-close-btn");
 var mealNutrientsContent = document.querySelector(".meal-nutrients-content");
 var modalEl = document.querySelector(".all-modals");
 
+var nutrientCloseBtn = document.querySelector("nutrient-close-btn");
+var mealNurtients = document.querySelector(".meal-nutrients")
 // event listeners
 searchBtn.addEventListener("click", getMealList);
 mealList.addEventListener("click", getMealRecipe);
 recipeCloseBtn.addEventListener("click", () => {
     mealDetailsContent.parentElement.classList.remove("showRecipe");
+
 });
+
 mealDetails.addEventListener("click", getDetails);
+
+/*nutrientCloseBtn.addEventListener("click", () => {
+    console.log("click");
+    mealNutrientsContent.parentElement.classList.remove("showNutrients");
+});*/
+
+
 
 //global arrays & objects
 var ingredientsFinder = ["strIngredient1", "strIngredient2", "strIngredient3", "strIngredient4", "strIngredient5", "strIngredient6", "strIngredient7", "strIngredient8", "strIngredient9", "strIngredient10", "strIngredient11", "strIngredient12", "strIngredient13", "strIngredient14", "strIngredient15", "strIngredient16", "strIngredient17", "strIngredient18", "strIngredient19", "strIngredient20",];
@@ -192,7 +203,7 @@ var getNutrients = async function (ingredientsArr, quantityArr) {
     for (var i = 0; i < ingredientsArr.length; i++) {
         var quantity = quantityArr[i];
         var ingredient = ingredientsArr[i];
-        var url = "https://api.edamam.com/api/nutrition-data?app_id=1a090f1c&app_key=61f7b34a6416e5761e95f3b2161ba4df&nutrition-type=cooking&ingr=" + quantity + " " + ingredient;
+        var url = "https://api.edamam.com/api/nutrition-data?app_id=2337a25d&app_key=2e70d2bea2e5ec47fa07d2b9c6babc6f&nutrition-type=cooking&ingr=" + quantity + " " + ingredient;
         var apiUrl = encodeURI(url);
         await fetch(apiUrl).then(function (response) {
             if (response.ok) {
@@ -229,6 +240,15 @@ var getNutrients = async function (ingredientsArr, quantityArr) {
     }
     mealNutrientModal(nutritionalInfo);
 };
+
+/*nutrientCloseBtn.addEventListener("click", () => {
+    mealNutrientsContent.parentElement.classList.remove("showNutrients");
+});*/
+
+
+
+
+
 // create a modal for nutrients
 function mealNutrientModal(nutrientsObj) {
     console.log(nutrientsObj);
@@ -251,6 +271,6 @@ function mealNutrientModal(nutrientsObj) {
     </div>
     `;
     mealNutrientsContent.innerHTML = html;
-    modalEl.classList.add("modalFlex")
+   /* modalEl.classList.add("modalFlex")*/
     mealNutrientsContent.parentElement.classList.add("showNutrients");
 }
