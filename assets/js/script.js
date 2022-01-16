@@ -155,7 +155,9 @@ function mealRecipeModal(meal) {
         </div>
         <div class = additionalButtons>
         <div class = "recipe-link">
-            <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
+            <div>
+                <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
+            <div>
             <button type = "submit" class = "more-info button is-link" id = "${meal.idMeal}">More Info</button>
             
         </div>
