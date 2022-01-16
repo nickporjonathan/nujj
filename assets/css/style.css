@@ -29,35 +29,6 @@ body {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-
-/* bulma loading button */
-/* .loader-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: #fff;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-
-  .loader {
-    height: 80px;
-    width: 80px;
-  }
-
-  &.is-active {
-    opacity: 1;
-    z-index: 1;
-  }
-} */
-/* end of bulma loading button */
-/*  */
 .background {
   background-image: url("../images/cropped-GettyImages-643764514.jpg");
   background-size: cover;
@@ -193,6 +164,25 @@ body {
   border-radius: 2rem;
 }
 /* js related */
+.matches{
+    display:flex;
+    width:100%;
+    flex-wrap: wrap;
+}
+.auto-fill{
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    font-family: inherit;
+    outline: 0;
+    border: 1px solid var(--aquamarine);
+    color: var(--aquamarine);
+    width: 100%;
+    border-radius: 2rem;
+}
+.auto-fill:hover{
+    background: rgb(207, 247, 228);
+    cursor: pointer;
+}
 .showRecipe {
   display: flex;
 }
@@ -283,9 +273,6 @@ body {
 .more-info:hover {
   opacity: 0.8;
 }
-/* .more-info::after {
-  background-color: blueviolet;
-} */
 .meal-nutrients {
   position: fixed;
   top: 50%;
@@ -312,7 +299,10 @@ body {
   background-color: var(--aquamarine-dark);
 }
 .nutrient-list {
-  color: #fff;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border-radius: .5rem;
 }
 .nutrient-list p {
   margin: 0.5rem;
@@ -342,8 +332,6 @@ body {
   justify-content: center;
   opacity: 0.9;
 }
-.nutrient-search::after {
-}
 .nutrient-close-btn {
   position: fixed;
   right: 2rem;
@@ -360,7 +348,6 @@ body {
   opacity: 0.9;
 }
 /* End of nutrient modal */
-/*  */
 .notFound {
   grid-template-columns: 1fr !important;
   color: var(--aquamarine);
@@ -389,26 +376,6 @@ body {
     width: 700px;
   }
 }
-/* 
-.element {
-    &.is-loading {
-        position: relative;
-        pointer-events: none;
-        opacity: 0.5;
-        &:after {
-            @include loader;
-            position: absolute;
-            top: calc(50% - 2.5em);
-            left: calc(50% - 2.5em);
-            width: 5em;
-            height: 5em;
-            border-width: 0.25em;
-        }
-    }
-}
-
-@import 'bulma/css/bulma.css' */
-
 @media screen and (min-width: 992px) {
   #meal {
     grid-template-columns: repeat(3, 1fr);

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <script src="https://kit.fontawesome.com/119704578d.js" crossorigin="anonymous"></script>
-    <title>Foo(d)</title>
-  </head>
-  <body>
-    <div class = background>
-    <div class = "container">
-      <div class = "meal-wrapper">
-        <div class ="headertext border">Food(d)</div>
-        <div class = "headersub">Don't know what to make for dinner?</div>
-        <div class = "meal-search">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/119704578d.js" crossorigin="anonymous"></script>
+  <title>Foo(d)</title>
+</head>
+
+<body>
+  <div class=background>
+    <div class="container">
+      <div class="meal-wrapper">
+        <div class="headertext border">Food(d)</div>
+        <div class="headersub">Don't know what to make for dinner?</div>
+        <div class="meal-search">
           <h2 class="title">Search Using An Ingredient</h2>
-          <div class = "meal-search-box">
-            <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
-            <button type = "submit" class = "search-btn btn" id = "search-btn">
-              <i class = "fas fa-search searchicon"></i>
-            </button>
-          </div>
+            <div class="meal-search-box">
+              <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input" name="ingredient">
+              <button type="submit" class="search-btn btn" id="search-btn">
+                <i class="fas fa-search searchicon"></i>
+              </button>
+            </div>
+            <div class="matches"id="match-list"></div>
         </div>
         <div class="meal-result">
           <h2 class="title">Your Search Results:</h2>
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="all-modals">
+      <div class="all-modals container">
         <div class="meal-details">
           <!-- Close recipe button -->
           <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
@@ -41,12 +41,12 @@
           </button>
           <!-- meal content -->
           <div class="meal-details-content">
-            <button type="button" class="btn nutrient-search button is-link is-loading" id="more-info">
+            <button type="button" class="btn nutrient-search" id="more-info">
               More Info
             </button>
           </div>
         </div>
-        
+
         <!-- Nutrient Modal-->
         <div class="meal-nutrients">
           <button type="button" class="btn nutrient-close-btn" id="nutrient-close-btn">
@@ -59,4 +59,5 @@
     </div>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

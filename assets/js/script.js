@@ -1,4 +1,5 @@
 var searchInput = document.getElementById("search-input");
+var matchList = document.getElementById("match-list");
 var searchBtn = document.getElementById("search-btn");
 var mealList = document.getElementById("meal");
 var mealDetailsContent = document.querySelector(".meal-details-content");
@@ -6,79 +7,80 @@ var mealDetails = document.querySelector(".meal-details");
 var recipeCloseBtn = document.getElementById("recipe-close-btn");
 var mealNutrientsContent = document.querySelector(".meal-nutrients-content");
 var modalEl = document.querySelector(".all-modals");
-
+var nutrientCloseBtn = document.getElementById("nutrient-close-btn")
 
 // event listeners
 searchBtn.addEventListener("click", getMealList);
+matchList.addEventListener("click", submitInput);
 mealList.addEventListener("click", getMealRecipe);
 recipeCloseBtn.addEventListener("click", () => {
   mealDetailsContent.parentElement.classList.remove("showRecipe");
 });
+nutrientCloseBtn.addEventListener("click", () => {
+    mealNutrientsContent.parentElement.classList.remove("showNutrients");
+  });
 mealDetails.addEventListener("click", getDetails);
+searchInput.addEventListener("input", () => searchIngredients(searchInput.value));
+
 
 //global arrays & objects
-var ingredientsFinder = [
-  "strIngredient1",
-  "strIngredient2",
-  "strIngredient3",
-  "strIngredient4",
-  "strIngredient5",
-  "strIngredient6",
-  "strIngredient7",
-  "strIngredient8",
-  "strIngredient9",
-  "strIngredient10",
-  "strIngredient11",
-  "strIngredient12",
-  "strIngredient13",
-  "strIngredient14",
-  "strIngredient15",
-  "strIngredient16",
-  "strIngredient17",
-  "strIngredient18",
-  "strIngredient19",
-  "strIngredient20",
-];
-var quantityFinder = [
-  "strMeasure1",
-  "strMeasure2",
-  "strMeasure3",
-  "strMeasure4",
-  "strMeasure5",
-  "strMeasure6",
-  "strMeasure7",
-  "strMeasure8",
-  "strMeasure9",
-  "strMeasure10",
-  "strMeasure11",
-  "strMeasure12",
-  "strMeasure13",
-  "strMeasure14",
-  "strMeasure15",
-  "strMeasure16",
-  "strMeasure17",
-  "strMeasure18",
-  "strMeasure19",
-  "strMeasure20",
-];
+var ingredientsFinder = ["strIngredient1","strIngredient2","strIngredient3","strIngredient4","strIngredient5","strIngredient6","strIngredient7","strIngredient8","strIngredient9","strIngredient10","strIngredient11","strIngredient12","strIngredient13","strIngredient14","strIngredient15","strIngredient16","strIngredient17","strIngredient18","strIngredient19","strIngredient20",];
+var quantityFinder = ["strMeasure1","strMeasure2","strMeasure3","strMeasure4","strMeasure5","strMeasure6","strMeasure7","strMeasure8","strMeasure9","strMeasure10","strMeasure11","strMeasure12","strMeasure13","strMeasure14","strMeasure15","strMeasure16","strMeasure17","strMeasure18","strMeasure19","strMeasure20",];
 var ingredients = [];
 var quantity = [];
-var nutritionalInfo = {
-  calories: 0,
-  totalFat: 0,
-  cholesterol: 0,
-  sodium: 0,
-  carbs: 0,
-  protein: 0,
-  vitaminA: 0,
-  vitaminC: 0,
-  vitaminD: 0,
-  vitaminK: 0,
-  calcium: 0,
-  iron: 0,
-  potassium: 0,
-  magnesium: 0,
+var nutritionalInfo = {calories: 0,totalFat: 0,cholesterol: 0,sodium: 0,carbs: 0,protein: 0,vitaminA: 0,vitaminC: 0,vitaminD: 0, vitaminK: 0,calcium: 0,iron: 0,potassium: 0,magnesium: 0,};
+var allIngredients =[];
+
+//get autocomplete array
+function getArray() {
+    fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+        .then(function(response){
+            if (response.ok){
+                response.json().then(function (data){
+                    var ingredientsList=data.meals
+                    for (var i=0; i<ingredientsList.length; i++){
+                        var ingredient =ingredientsList[i].strIngredient;
+                        allIngredients.push(ingredient);
+                    }
+                })
+                allIngredients.sort();
+            }
+            else{
+                console.log("error");
+                return;
+            }
+        })
 };
+//search allIngredients and filter it
+function searchIngredients(searchText) {
+    let matches = allIngredients.filter(ingredient => {
+        var regEx = new RegExp (`^${searchText}`, "gi");
+        return ingredient.match(regEx);
+    });
+    if (searchText.length === 0){
+        matches =[];
+        matchList.innerHTML="";
+    }
+    else{
+    displayMatches(matches);
+    }
+}
+// Show autocomplete options in html
+function displayMatches(matches) {
+    if(matches.length > 0){
+        var html = matches.map(match => `
+        <div class="auto-fill">
+            <h4>${match}<h4>
+        </div>`).join("");
+    }
+    matchList.innerHTML = html;
+}
+//run search if autocomplete option selected
+function submitInput(event){
+    var input=event.target.innerHTML;
+    searchInput.value=input;
+    getMealList();
+}
 
 // get meal list that matches with the search ingredient
 function getMealList() {
@@ -133,6 +135,9 @@ function getMealList() {
       mealList.innerHTML = "Sorry we were unable to connect!";
       mealList.classList.add("notFound");
     });
+    matches =[];
+    matchList.innerHTML="";
+    searchInput.value="";
 }
 // create a modal
 function mealRecipeModal(meal) {
@@ -151,7 +156,7 @@ function mealRecipeModal(meal) {
         <div class = additionalButtons>
         <div class = "recipe-link">
             <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
-            <button type = "submit" class = "more-info" id = "${meal.idMeal}">More Info</button>
+            <button type = "submit" class = "more-info button is-link" id = "${meal.idMeal}">More Info</button>
             
         </div>
         </div>
@@ -180,12 +185,6 @@ function getMealRecipe(event) {
     });
   }
 }
-// // adding loading function to "more-info" button
-// function loadDetails(event) {
-//     event.preventDefault();
-//     if (event.target)
-// }
-
 //Compile all ingredients from receipe
 function getDetails(event) {
   event.preventDefault();
@@ -331,6 +330,8 @@ function mealNutrientModal(nutrientsObj) {
     </div>
     `;
   mealNutrientsContent.innerHTML = html;
-  modalEl.classList.add("modalFlex");
+  modalEl.classList.add("modalFlex","container");
   mealNutrientsContent.parentElement.classList.add("showNutrients");
 }
+
+getArray();
