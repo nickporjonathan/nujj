@@ -334,6 +334,6 @@ function mealNutrientModal(nutrientsObj) {
     </div>
     `;
   mealNutrientsContent.innerHTML = html;
-  modalEl.classList.add("modalFlex");
+  modalEl.classList.add("modalFlex","container");
   mealNutrientsContent.parentElement.classList.add("showNutrients");
 }
