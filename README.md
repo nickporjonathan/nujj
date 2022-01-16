@@ -14,7 +14,7 @@ The purpose of this app is to allow users to search for receipes based on a spec
 *LordIcon Library
 
 ## Website
-https://jnnh.github.io/nujj/
+https://nickporjonathan.github.io/nujj/
 
 ## Screenshot
 This search app should look like the following screenshots
