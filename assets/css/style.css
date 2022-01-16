@@ -29,6 +29,34 @@ body {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
+/* bulma loading button */
+/* .loader-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+
+  .loader {
+    height: 80px;
+    width: 80px;
+  }
+
+  &.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
+} */
+/* end of bulma loading button */
 /*  */
 .background {
   background-image: url("../images/cropped-GettyImages-643764514.jpg");
@@ -255,6 +283,9 @@ body {
 .more-info:hover {
   opacity: 0.8;
 }
+/* .more-info::after {
+  background-color: blueviolet;
+} */
 .meal-nutrients {
   position: fixed;
   top: 50%;
@@ -311,6 +342,8 @@ body {
   justify-content: center;
   opacity: 0.9;
 }
+.nutrient-search::after {
+}
 .nutrient-close-btn {
   position: fixed;
   right: 2rem;
@@ -356,6 +389,26 @@ body {
     width: 700px;
   }
 }
+/* 
+.element {
+    &.is-loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.5;
+        &:after {
+            @include loader;
+            position: absolute;
+            top: calc(50% - 2.5em);
+            left: calc(50% - 2.5em);
+            width: 5em;
+            height: 5em;
+            border-width: 0.25em;
+        }
+    }
+}
+
+@import 'bulma/css/bulma.css' */
+
 @media screen and (min-width: 992px) {
   #meal {
     grid-template-columns: repeat(3, 1fr);
