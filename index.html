@@ -9,11 +9,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
+    <script src="https://kit.fontawesome.com/119704578d.js" crossorigin="anonymous"></script>
     <title>Foo(d)</title>
   </head>
-
   <body>
-  
     <div class = background>
     <div class = "container">
       <div class = "meal-wrapper">
@@ -21,46 +20,43 @@
         <div class = "headersub">Don't know what to make for dinner?</div>
         <div class = "meal-search">
           <h2 class="title">Search Using An Ingredient</h2>
-          
-          
           <div class = "meal-search-box">
             <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
             <button type = "submit" class = "search-btn btn" id = "search-btn">
-              <i class = "fas fa-search"></i>
+              <i class = "fas fa-search searchicon"></i>
             </button>
           </div>
         </div>
-
         <div class="meal-result">
           <h2 class="title">Your Search Results:</h2>
           <div id="meal">
-
           </div>
         </div>
       </div>
       <div class="all-modals">
         <div class="meal-details">
           <!-- Close recipe button -->
-
           <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
             <i class="fas fa-times"></i>
           </button>
-
           <!-- meal content -->
           <div class="meal-details-content">
-            <button type="button" class="btn nutrient-search" id="more-info">
+            <button type="button" class="btn nutrient-search button is-link is-loading" id="more-info">
               More Info
             </button>
           </div>
         </div>
+        
         <!-- Nutrient Modal-->
         <div class="meal-nutrients">
-          <div class="meal-nutrients-content"></div>
+          <button type="button" class="btn nutrient-close-btn" id="nutrient-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="meal-nutrients-content">
+          </div>
         </div>
       </div>
     </div>
-
     <script src="./assets/js/script.js"></script>
 </body>
-
 </html>
