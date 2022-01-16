@@ -330,20 +330,26 @@ function mealNutrientModal(nutrientsObj) {
   console.log(nutrientsObj);
   let html = `
     <div class = "nutrient-list">
-        <h2 class = "recipe-title">Nutrients</h2>
-        <p><span>Calories:</span> ${nutrientsObj.calories} </p>
-        <p><span>Total Fat:</span> ${nutrientsObj.totalFat} %</p>
-        <p><span>Cholesteral:</span> ${nutrientsObj.cholesterol} %</p>
-        <p><span>Sodium:</span> ${nutrientsObj.sodium} %</p>
-        <p><span>Carbohydrates:</span> ${nutrientsObj.carbs} %</p>
-        <p><span>Protein:</span> ${nutrientsObj.protein} %</p>
-        <p><span>Vitamin A:</span> ${nutrientsObj.vitaminA} %</p>
-        <p><span>Vitamin C:</span> ${nutrientsObj.vitaminC} %</p>
-        <p><span>Vitamin D:</span> ${nutrientsObj.vitaminD} %</p>
-        <p><span>Vitamin K:</span> ${nutrientsObj.vitaminK} %</p>
-        <p><span>Calcium:</span> ${nutrientsObj.calcium} %</p>
-        <p><span>Iron:</span> ${nutrientsObj.iron} %</p>
-        <p><span>Potassium:</span> ${nutrientsObj.potassium} %</p>
+        <h2 class = "nutrient-title">Nutrients</h2>
+        <h3 class = "disclaimer"> The following details are for the full receipe NOT the serving sizes<h3>
+        <div>
+            <p class="calories"><span>Calories:</span> ${nutrientsObj.calories} </p>
+            <div class="top-list">
+                <p class="right-justify exception">% Daily Value<p>
+                <p><span>Total Fat:</span> ${nutrientsObj.totalFat} %</p>
+                <p><span>Cholesteral:</span> ${nutrientsObj.cholesterol} %</p>
+                <p><span>Sodium:</span> ${nutrientsObj.sodium} %</p>
+                <p><span>Carbohydrates:</span> ${nutrientsObj.carbs} %</p>
+                <p class="exception"><span>Protein:</span> ${nutrientsObj.protein} %</p>
+            </div>
+            <p><span>Vitamin A:</span> ${nutrientsObj.vitaminA} %</p>
+            <p><span>Vitamin C:</span> ${nutrientsObj.vitaminC} %</p>
+            <p><span>Vitamin D:</span> ${nutrientsObj.vitaminD} %</p>
+            <p><span>Vitamin K:</span> ${nutrientsObj.vitaminK} %</p>
+            <p><span>Calcium:</span> ${nutrientsObj.calcium} %</p>
+            <p><span>Iron:</span> ${nutrientsObj.iron} %</p>
+            <p><span>Potassium:</span> ${nutrientsObj.potassium} %</p>
+        </div>
     </div>
     `;
   mealNutrientsContent.innerHTML = html;
